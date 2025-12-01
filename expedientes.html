@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Inicio - Estudio juridico MYC</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-SgOJa3DmI69IUzQ2PVdRZhwQ+dy64/BUtbMJw1MZ8t5HZApcHrRKUc4W0kG879m7" crossorigin="anonymous"/>
+    <link rel="stylesheet" href="estilos.css">
+  </head>
+
+  <body>
+    <nav class="navbar navbar-expand-lg bg-body-tertiary">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="./">Estudio juridico MYC</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item">
+              <a class="nav-link" aria-current="page" href="./">Inicio</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="clientes.html">Clientes</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link active" href="expedientes.html">Expedientes</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="juzgados.html">Juzgados</a>
+            </li>
+          </ul>
+          <div id="nav-login">
+            <div id="div-login">
+              <a href="login.html" class="btn btn-outline-success">Iniciar sesión</a>
+            </div>
+          </div>
+          <div id="div-logout">
+              <p id="texto-logueado"></p>
+          </div>
+          <div id="div-logoutboton">
+              <span><button class="btn btn-success" id="btn-logout">Salir</button></span>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Contenido Principal -->
+    <div class="container mt-4">
+        <div class="d-flex justify-content-between align-items-center mb-3">
+            <h2>Listado de Expedientes</h2>
+            <button class="btn btn-primary" id="btnNuevo" data-bs-toggle="modal" data-bs-target="#modal-expediente">
+                Añadir Expediente
+            </button>
+        </div>
+        <div id="alerta"></div>
+        <hr>
+        <!-- Listado dinámico de expedientes -->
+        <div class="table-responsive">
+            <table class="table table-striped table-hover align-middle">
+                <tbody id="listado-expedientes">
+                    <!-- Las filas se cargarán aquí -->
+                    <tr><td colspan="5" class="text-center">Cargando expedientes...</td></tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- Modal para Añadir/Editar Expediente -->
+    <div class="modal fade" id="modal-expediente" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <form id="formulario_cliente">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="titulo-modal-expediente">Datos del expediente</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                      <div class="row">
+                        <div class="col-md-6 mb-3">
+                          <label for="idcliente" class="form-label">Cliente</label>
+                            <select class="form-select" id="idcliente" name="idcliente" required>
+                                <option value="">Cargando clientes...</option>
+                                <!-- Opciones de clientes se cargarán aquí -->
+                            </select>
+                        </div>
+                        <input type="hidden" class="form-control" id="idexpediente" name="idexpediente" value="">
+                        <div class="col-md-6 mb-3">
+                          <label for="demandante" class="form-label">¿Demandante o demandado?</label>
+                          <select class="form-select" id="demandante" name="demandante" required>
+                            <option value="Demandado">Demandado</option>
+                            <option value="Demandante">Demandante</option>
+                          </select>
+                        </div>
+                      </div>
+                    </form>
+                    <form id="formulario">
+                      <div class="row">
+                        <div class="col-md-6 mb-3">
+                          <label for="tipo_expediente" class="form-label">Tipo de expediente</label>
+                          <select class="form-select" id="tipo_expediente" name="tipo_expediente" required>
+                            <option value="Judicial">Judicial</option>
+                            <option value="Extrajudicial">Extrajudicial</option>
+                          </select>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                          <label for="nro_expediente" class="form-label">Numero de expediente</label>
+                          <input type="text" class="form-control" id="nro_expediente" name="nro_expediente" required>
+                        </div>
+                      </div>
+
+                      <div class="mb-3">
+                        <label for="juzgado" class="form-label">Juzgado</label>
+                          <select class="form-select" id="juzgado" name="juzgado" required>
+                              <option value="">Cargando juzgados...</option>
+                              <!-- Opciones de juzgados se cargarán aquí -->
+                          </select>
+                      </div>
+                      
+                      <div class="row">
+                        <div class="col-md-6 mb-3">
+                          <label for="caratula" class="form-label">Caratula</label>
+                          <input type="text"  class="form-control" id="caratula" name="caratula" required>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                          <label for="tipo_juicio" class="form-label">Tipo de juicio</label>
+                          <input type="text" class="form-control" id="tipo_juicio" name="tipo_juicio" required>
+                        </div>
+                      </div>
+
+                      <div class="row">
+                        <div class="col-md-6 mb-3">
+                          <label for="acargode" class="form-label">A cargo de:</label>
+                          <input type="text" class="form-control" id="acargode" name="acargode" required>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                          <label for="estado" class="form-label">Estado</label>
+                          <select class="form-select" id="estado" name="estado" required>
+                            <option value="Activo">Activo</option>
+                            <option value="Resuleto favorable">Resuleto favorable</option>
+                          </select>
+                        </div>
+                      </div>
+
+                      <div class="col-md-6 mb-3">
+                        <label for="fecha_inicio" class="form-label">Fecha de inicio</label>
+                        <input type="date" class="form-control" id="fecha_inicio" name="fecha_inicio" required>
+                      </div>
+
+                      <div class="row">
+                        <div class="col-md-6 mb-3">
+                          <label for="fecha_fin" class="form-label">Fecha de fin</label>
+                          <input type="date" class="form-control" id="fecha_fin" name="fecha_fin" required>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                          <label for="fecha_baja" class="form-label">Fecha de baja</label>
+                          <input type="date" class="form-control" id="fecha_baja" name="fecha_baja" required>
+                        </div>
+                      </div>
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                        <button type="submit" class="btn btn-primary">Guardar Cambios</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js" integrity="sha384-k6d4wzSIapyDyv1kpU366/PK5hCdSbCRGRCMv+eplOQJWyd1fbcAu9OCUj5zNLiq" crossorigin="anonymous"></script>
+    <script type="module" src="./controllers/lista-expedientes.js"></script>
+    <script src="./controllers/sesion.js"></script>
+    <script src="./controllers/comprobar-login.js"></script>
+  </body>
+</html>
