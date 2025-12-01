@@ -59,11 +59,12 @@ if(isset($_GET['tabla'])) { // Si está seteado el parámetro tabla
                 break;
             case 'insertar': // En caso que sea insertar
                 // Ejecutamos el método insertar y capturamos el ID
-                $tabla->insertar($valores);
+                $id_insertado = $tabla->insertar($valores);
 
                 $response = [
                     'success' => true,
                     'message' => 'Pedido insertado correctamente.',
+                    'id' => $id_insertado,
                 ];
                 
                 // Siempre enviamos la respuesta JSON al final

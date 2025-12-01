@@ -18,13 +18,16 @@ export async function seleccionarClienteExpedientes() {
  * @param datos los datos a insertar
  */
 export const insertarClienteExpedientes = (datos) => {
+    for (const value of datos.values()) {
+        console.log(value);
+    }
     fetch(`${URL}&accion=insertar`, {
         method: 'POST',
         body: datos
     })
     .then(res => res.json())
     .then(data => {
-        console.log(data);
+        //console.log(data);
         return data;
     });
 }
@@ -41,7 +44,7 @@ export const actualizarClienteExpediente = (datos, idexpediente) => {
     })
     .then(res => res.json())
     .then(data => {
-        console.log(data);
+        //console.log(data);
         return data;
     });
 }

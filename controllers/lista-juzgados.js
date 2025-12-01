@@ -24,12 +24,6 @@ let juzgados = [];
 let juzgadosFiltrados = [];
 let juzgado = {};
 
-// Control de usuario
-let usuario = '';
-let usuario_id = '';
-let logueado = false;
-
-
 /**
  * Método que se ejecuta
  * cuando se carga la página
@@ -62,11 +56,11 @@ function filtrarPorNombre(n) {
 /**
  * Muestra los juzgados  *
  */
-function mostrarJuzgados() {//18rem; style="width: 36rem;"
+function mostrarJuzgados() {
   listado.innerHTML = '';
     juzgadosFiltrados.map(juzgado =>
         (listado.innerHTML += `
-            <div class="col">
+            <div class="col mb-3">
                 <div class="card" style="width: 36rem;">
                     <div class="card-body">
                         <h5 class="card-title">
@@ -88,10 +82,10 @@ function mostrarJuzgados() {//18rem; style="width: 36rem;"
                                 <span name="spantelefono">Telefono: ${juzgado.telefono}</span>
                             </div>
                         </div>
-                    </div>
                     <a class="btnEditar btn btn-primary">Editar</a>
                     <a class="btnBorrar btn btn-danger">Borrar</a>
                     <input type="hidden" class="idJuzgado" value="${juzgado.id}">
+                    </div>
                 </div>
             </div>
         `)
@@ -161,7 +155,7 @@ formulario.addEventListener('submit', (e) => {
             break;
     }
 
-    //location.reload();
+    location.reload();
 
     insertarAlerta(mensajeAlerta, 'success');
     mostrarJuzgados();

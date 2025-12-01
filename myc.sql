@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 01-12-2025 a las 03:58:10
+-- Tiempo de generación: 01-12-2025 a las 13:38:22
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.2.12
 
@@ -49,7 +49,8 @@ CREATE TABLE `clientes` (
 
 INSERT INTO `clientes` (`id`, `tipo_persona`, `tipo_dni`, `apellido_rsocial`, `nombre`, `domicilio`, `telefono`, `email`, `localidad`, `cpostal`, `fnacimiento`, `falta`, `fbaja`) VALUES
 (1, 'Persona Fisica', '46970241', 'Cainelli', 'Santiago', 'Dorrego 1917', '3476123966', 'santiagocainelli@institutocedec.com', 'San Lorenzo', 220, '2006-01-21', '2025-11-08', '2025-11-29'),
-(5, 'Persona Fisica', '42464578', 'Paredes', 'Julian', 'Pousel 1053', '123456', 'tatucainelli@gmail.com', 'San Lorenzo', 220, '2001-03-29', '2025-11-20', '2025-11-30');
+(5, 'Persona Fisica', '42464578', 'Paredes', 'Julian', 'Pousel 1053', '123456', 'tatucainelli@gmail.com', 'San Lorenzo', 220, '2001-03-29', '2025-11-20', '2025-11-30'),
+(7, 'Persona Fisica', '19202476', 'Cainelli', 'Ignacio', 'Dorrego 1917', '987654321', 'nacho@gmail.com', 'San Lorenzo', 220, '1998-10-21', '2025-11-27', '2025-12-02');
 
 -- --------------------------------------------------------
 
@@ -69,7 +70,9 @@ CREATE TABLE `cliente_expediente` (
 
 INSERT INTO `cliente_expediente` (`idcliente`, `idexpediente`, `demandante`) VALUES
 (1, 1, 'Demandante'),
-(5, 5, 'Demandado');
+(1, 35, 'Demandado'),
+(5, 5, 'Demandado'),
+(7, 37, 'Demandante');
 
 -- --------------------------------------------------------
 
@@ -97,7 +100,9 @@ CREATE TABLE `expedientes` (
 
 INSERT INTO `expedientes` (`id`, `tipo_expediente`, `nro_expediente`, `juzgado`, `caratula`, `fecha_inicio`, `tipo_juicio`, `acargode`, `fecha_fin`, `estado`, `fecha_baja`) VALUES
 (1, 'Judicial', 1, 1, 'Expediente de Santiago Cainelli', '2025-11-08', 'de ejecución', 'Andrés', '2025-11-29', 'Activo', '2025-11-29'),
-(5, 'Extrajudicial', 1, 1, 'Expediente de Julián Paredes ', '2025-11-21', 'penal', 'Maria', '2025-11-22', 'Resuleto favorable', '2025-11-22');
+(5, 'Extrajudicial', 2, 1, 'Expediente de Julián Paredes ', '2025-11-21', 'penal', 'Maria', '2025-11-22', 'Resuleto favorable', '2025-11-22'),
+(35, 'Judicial', 3, 1, 'Expediente de Santiago', '2025-12-01', 'penal', 'Stefano', '2025-12-02', 'Resuleto favorable', '2025-12-03'),
+(37, 'Judicial', 4, 3, 'Falto al laburo', '2025-11-27', 'Oral', 'Juan cainelli', '2025-12-02', 'Resuleto favorable', '2025-12-02');
 
 -- --------------------------------------------------------
 
@@ -131,18 +136,15 @@ INSERT INTO `juzgado` (`id`, `nro_juzgado`, `nombre_juzgado`, `jueztram`, `secre
 CREATE TABLE `usuarios` (
   `id` int(11) NOT NULL,
   `correo` varchar(191) NOT NULL,
-  `nombre` varchar(100) NOT NULL,
-  `apellido` varchar(100) NOT NULL,
-  `password` varchar(255) NOT NULL,
-  `imagen` varchar(255) DEFAULT NULL
+  `password` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Volcado de datos para la tabla `usuarios`
 --
 
-INSERT INTO `usuarios` (`id`, `correo`, `nombre`, `apellido`, `password`, `imagen`) VALUES
-(1, 'abogado@gmail.com', 'Andrés', 'Paredes', '1234', 'nodisponible.png');
+INSERT INTO `usuarios` (`id`, `correo`, `password`) VALUES
+(1, 'abogado@gmail.com', '1234');
 
 --
 -- Índices para tablas volcadas
@@ -186,13 +188,13 @@ ALTER TABLE `usuarios`
 -- AUTO_INCREMENT de la tabla `clientes`
 --
 ALTER TABLE `clientes`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT de la tabla `expedientes`
 --
 ALTER TABLE `expedientes`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=38;
 
 --
 -- AUTO_INCREMENT de la tabla `juzgado`

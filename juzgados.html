@@ -46,25 +46,19 @@
     </nav>
 
     <!-- Contenido Principal -->
-    <div class="container mt-4">
-        <div class="d-flex justify-content-between align-items-center mb-3">
-            <h2>Listado de Juzgados</h2>
-            <button class="btn btn-primary" id="btnNuevo" data-bs-toggle="modal" data-bs-target="#modal-juzgado">
-                Añadir Juzgado
-            </button>
-        </div>
-        <div id="alerta"></div>
-        <hr>
-        <!-- Listado dinámico de juzgados -->
-        <div class="table-responsive">
-            <table class="table table-striped table-hover align-middle">
-                <tbody id="listado-juzgados">
-                    <!-- Las filas se cargarán aquí -->
-                    <tr><td colspan="5" class="text-center">Cargando juzgados...</td></tr>
-                </tbody>
-            </table>
-        </div>
-    </div>
+    <main class="container">
+      <section class="mt-4">
+          <div class="d-flex justify-content-between align-items-center mb-3">
+              <h2>Listado de Juzgados</h2>
+              <button class="btn btn-primary" id="btnNuevo" data-bs-toggle="modal" data-bs-target="#modal-juzgado">
+                  Añadir Juzgado
+              </button>
+          </div>
+          <div id="alerta"></div>
+          <!-- Listado dinámico de juzgados -->
+            <div class="row" id="listado-juzgados"></div>
+      </section>
+    </main>
 
     <!-- Modal para Añadir/Editar Juzgado -->
     <div class="modal fade" id="modal-juzgado" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -112,6 +106,11 @@
         </div>
     </div>
     
+    <footer class="navbar navbar-expand-lg"></footer>
+        <div class="container text-center">
+            <p>&copy; 2025 Estudio jurídico MYC. Todos los derechos reservados.</p>
+        </div>
+    </footer>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js" integrity="sha384-k6d4wzSIapyDyv1kpU366/PK5hCdSbCRGRCMv+eplOQJWyd1fbcAu9OCUj5zNLiq" crossorigin="anonymous"></script>
     <script type="module" src="./controllers/lista-juzgados.js"></script>
     <script src="./controllers/sesion.js"></script>

@@ -63,11 +63,11 @@ function filtrarPorNombre(n) {
 /**
  * Muestra los clientes  *
  */
-function mostrarClientes() {//18rem; style="width: 36rem;"
+function mostrarClientes() {
   listado.innerHTML = '';
     clientesFiltrados.map(cliente =>
         (listado.innerHTML += `
-            <div class="col">
+            <div class="col mb-3">
                 <div class="card" style="width: 36rem;">
                     <div class="card-body">
                         <h5 class="card-title">
@@ -187,7 +187,7 @@ formulario.addEventListener('submit', (e) => {
             break;
     }
 
-    //location.reload();
+    location.reload();
 
     insertarAlerta(mensajeAlerta, 'success');
     mostrarClientes();

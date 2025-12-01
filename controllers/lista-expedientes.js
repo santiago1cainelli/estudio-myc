@@ -110,9 +110,8 @@ function mostrarExpedientes() {
         let juzgadoFiltrado = filtrarJuzgadoPorId(expediente.juzgado);
         let clienteExpedienteFiltrado = filtrarClienteExpedientePorIdExpediente(expediente.id);
         let clienteFiltrado = filtrarClientesPorId(clienteExpedienteFiltrado.idcliente);
-        console.log(clienteExpedienteFiltrado);
         listado.innerHTML += `
-            <div class="col">
+            <div class="col mb-3">
                 <div class="card" style="width: 36rem;">
                     <div class="card-body">
                         <h5 class="card-title">
@@ -256,18 +255,18 @@ btnNuevo.addEventListener('click', () => {
 /**
  * Ejecuta el evento submit del formulario
  */
-formulario.addEventListener('submit', (e) => {
+formulario.addEventListener('submit', async (e) => {
     e.preventDefault(); // Previene la acción por defecto
 
     const datos = new FormData(formulario); // Guarda los datos del formulario
     const datos_cliente = new FormData(formulario_cliente); // Guarda los datos del formulario_cliente
     switch (opcion) {
         case 'insertar':
-            insertarExpedientes(datos);
+            const resultado = await insertarExpedientes(datos); // Esperamos al insertar del expendiente para captura su id
+            datos_cliente.set('idexpediente', resultado.id); // Almacenamos el id en el formulario para que pueda insertar el cliente_expediente
             insertarClienteExpedientes(datos_cliente);
             mensajeAlerta = '¡Datos guardados!';
             break;
-
         case 'actualizar':
             actualizarExpediente(datos, id);
             actualizarClienteExpediente(datos_cliente, id);
@@ -275,7 +274,7 @@ formulario.addEventListener('submit', (e) => {
             break;
     }
 
-    //location.reload();
+    location.reload();
 
     insertarAlerta(mensajeAlerta, 'success');
     mostrarExpedientes();

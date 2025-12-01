@@ -17,17 +17,18 @@ export async function seleccionarExpedientes() {
  * Inserta los datos en la BD
  * @param datos los datos a insertar
  */
-export const insertarExpedientes = (datos) => {
-    fetch(`${URL}&accion=insertar`, {
+export const insertarExpedientes = async (datos) => {
+    const res = await fetch(`${URL}&accion=insertar`, {
         method: 'POST',
         body: datos
-    })
-    .then(res => res.json())
-    .then(data => {
-        console.log(data);
-        return data;
     });
-}
+
+    const data = await res.json();
+    console.log("Informacion que devuelve el insertar expediente:", data);
+    
+    return data;
+};
+
 
 /**
  * Modifica los datos en la BD
